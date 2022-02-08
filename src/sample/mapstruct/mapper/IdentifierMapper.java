@@ -13,10 +13,8 @@ import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
-import org.mapstruct.Named;
 import org.mapstruct.NullValueMappingStrategy;
 import org.mapstruct.ReportingPolicy;
-import org.mapstruct.factory.Mappers;
 import sample.mapstruct.model.dto.Identifier;
 
 @Mapper(
@@ -26,14 +24,11 @@ import sample.mapstruct.model.dto.Identifier;
     nullValueMappingStrategy = NullValueMappingStrategy.RETURN_NULL)
 public interface IdentifierMapper {
 
-  IdentifierMapper MAPPER = Mappers.getMapper(IdentifierMapper.class);
-
   @Mappings({
     @Mapping(source = "identifier.number", target = "number"),
     @Mapping(source = "identifier.city", target = "cityCode"),
     @Mapping(source = "identifier.country", target = "countryCode"),
     @Mapping(source = "identifier.mydate", target = "mydate")
   })
-  @Named("toIdentifierDynamo")
   sample.mapstruct.model.Identifier toIdentifierDynamo(Identifier identifier);
 }
